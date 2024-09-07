@@ -1,49 +1,43 @@
 "use client";
-import { Button, Container, Divider, Group, Pagination, Rating, Text, Textarea, Title } from "@mantine/core";
+import { Container, Text, Title, Rating, Space, Textarea, Button, Divider, Group, Pagination} from "@mantine/core";
+import Footer from "@components/Footer";
+import Review from "@components/Review";
+import { Reviews } from "@lib/review";
 
 export default function Home() {
   return (
     <Container size="600px">
       <Title order={2}>Food Review 🍕</Title>
-      
-      {/* <Space h="sm"/> */}
-      <Title order={4} mt="sm">Your rating</Title>
-      <Rating defaultValue={0} size="lg" count={5}/>
+
+      <Space h="lg" />
+
+      <Title order={4}>Your rating</Title>
+      <Rating defaultValue={0} size="lg" />
+
+      <Space h="lg" />
 
       <Textarea
-        label="Your review" size="sm"
-        placeholder="Do you enjoy eating?"
-        rows={3}
-        my="sm"
+      rows={3}
+      label="Your review"
+      placeholder="Do you enjoy eating?"
       />
+      <Space h="xs" />
+      <Button variant="filled" color="orange">Submit Review</Button>
 
-      <Button variant="filled" color="orange" size="sm">Submit Review</Button>
+      {Reviews.map((review) => (
+        <Review key={review.id} {...review} />
+      ))}
 
-      <Divider my="md"/>
+      <Space h="lg" />
 
-      <Group justify="center">
-        <Title order={4}>Elon Musk</Title>
-        <Rating defaultValue={5} size="sm" readOnly/>
+      <Group justify="center" mt="sm" >
+            <Pagination total={20} color="orange"/>
       </Group>
 
-      <Text ta="center" c="dimmed" fz="sm">Best pizza in this world. I give you X score.</Text> 
-      
-      <Divider my="sm"/>
-
-      <Group justify="center">
-        <Title order={4}>Mark Zuck</Title>
-        <Rating defaultValue={4} size="sm" readOnly/>
-      </Group>
-
-      <Text ta="center" c="dimmed" fz="15px">My favourite part is pepperoni</Text> 
-
-      <Group justify="center">
-        <Pagination total={20} color="orange" my="sm"/>
-      </Group>
-      
-      <Text ta="center" my="sm" c="dimmed">
-        Copyright © 2024 Ratchanon Chaiwong 660610789
+      <Text ta="center" my="sm">
+      <Footer year="2024" name="Thanakon Saokham" studentId="660610761" />
       </Text>
+
     </Container>
   );
 }
